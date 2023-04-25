@@ -49,11 +49,6 @@
     border-radius: 5px;
 }
 
-.navbar ul li a:hover {
-    box-shadow: 0 -5px 0px black inset,
-    500px 0 0 rgba(249, 250, 248, 0.3) inset;
-}
-
 .navbar .hamburger {
     display: none;
     width: 40px;
@@ -160,7 +155,7 @@
 }
 
 .info .info-subsection img {
-    border-radius: 100%;
+    border-radius: 10%;
 }
 
 .info .info-subsection .left {
@@ -195,6 +190,7 @@ footer {
     justify-content: center;
     color: white;
     text-transform: capitalize;
+    margin-top: 100px;
 }
 
 @media (max-width: 850px) {
