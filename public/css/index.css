@@ -196,7 +196,10 @@ footer {
     text-transform: capitalize;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
+    .navbar {
+        justify-content: space-between;
+    }
     .links {
         justify-content: start;
         align-items: center;
@@ -209,6 +212,7 @@ footer {
         margin-top: 80px;
         width: 100%;
         transition: all 0.5s ease-in;
+        color: white;
     }
     .navbar ul li a:hover {
         box-shadow: none;
@@ -239,3 +243,4 @@ footer {
     nav :checked ~ .links {
         transform: translateY(0);
     }
+}
