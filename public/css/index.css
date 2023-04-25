@@ -156,6 +156,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    padding: 0 20px;
 }
 
 .info .info-subsection img {
@@ -207,15 +208,15 @@ footer {
         position: fixed;
         top: 0;
         right: 0;
-        transform: translateY(-200%);        
-        background-color: black;
-        margin-top: 80px;
+        transform: translateX(100%);        
+        background-color: white;
+        margin-top: 100px;
         width: 100%;
+        padding-bottom: 20px;
         transition: all 0.5s ease-in;
-        color: white;
     }
-    .navbar ul li a:hover {
-        box-shadow: none;
+    .navbar .links li a {
+        padding: 20px;
     }
     .navbar .hamburger {
         display: flex;
@@ -242,5 +243,27 @@ footer {
     }        
     nav :checked ~ .links {
         transform: translateY(0);
+    }
+    .info .info-subsection{ 
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    .info .info-subsection {
+        justify-content: center;
+        gap: 50px;
+    }
+    .info .info-subsection .left {
+        width: 100%;
+    }
+    .info .info-subsection img.left {
+        width: 350px;
+    }
+    .info .info-subsection .right {
+        width: 100%;
+    }
+
+    .info .info-subsection img.right {
+        width: 350px;
+        margin-bottom: 50px;
     }
 }
