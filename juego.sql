@@ -81,7 +81,7 @@ CREATE TABLE `partida-minijuego` (
 --
 
 CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL,
+  `idUsuario` varchar(30) NOT NULL,
   `Nombre` varchar(30) NOT NULL,
   `Apellido` varchar(30) NOT NULL,
   `fechaNacimiento` date NOT NULL,
@@ -151,12 +151,9 @@ ALTER TABLE `minijuego`
 ALTER TABLE `partida`
   MODIFY `idPartida` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
+
+insert into `usuario` (`idUsuario`,`Nombre`,`Apellido`,
+  `fechaNacimiento`,`Contraseña`,`correo`,`telefono`,`pais`) values ('AldeDios','Aldehil','Sánchez','2003-07-05','12345','sanheraldehil@outlook.com','+525585578513','México');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

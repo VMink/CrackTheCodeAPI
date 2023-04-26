@@ -1,5 +1,3 @@
-console.log(process.env.MYSQL_USER);
-
 const express = require('express');
 const mysql = require('mysql')
 
@@ -8,8 +6,8 @@ const port = 8080;
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: '1234',
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
   database: 'juego'
 });
 
@@ -35,7 +33,20 @@ app.get('/register/page', (req,res) =>  {
 })
 
 app.get('/login/:user/:pass', (req,res) => {
-
+  let user = req.params.user;
+  let sql = "select idUsuario,Contraseña from usuario where idUsuario = ?";
+  connection.query(
+    sql,[user],
+    (err, result) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log(result);
+        res.contentType('text/plain');
+        res.send(result[0].idUsuario);
+      }
+    }
+  );
 })
 
 app.listen(port,() => {
