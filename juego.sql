@@ -153,7 +153,9 @@ ALTER TABLE `partida`
 
 
 insert into `usuario` (`idUsuario`,`Nombre`,`Apellido`,
-  `fechaNacimiento`,`Contraseña`,`correo`,`telefono`,`pais`) values ('AldeDios','Aldehil','Sánchez','2003-07-05','12345','sanheraldehil@outlook.com','+525585578513','México');
+  `fechaNacimiento`,`Contraseña`,`correo`,`telefono`,`pais`)
+    values ('AldeDios','Aldehil','Sánchez','2003-07-05','12345',
+      'sanheraldehil@outlook.com','+525585578513','México');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

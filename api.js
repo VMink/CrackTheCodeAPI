@@ -41,9 +41,12 @@ app.get('/login/:user/:pass', (req,res) => {
       if (err) {
         throw err;
       } else {
-        console.log(result);
-        res.contentType('text/plain');
-        res.send(result[0].idUsuario);
+        res.contentType('text/json');
+        let datos_usuario = {login_validation:false, id_user:req.params.user}
+        if (result[0].idUsuario = req.params.user && result[0]['Contraseña'] == req.params.pass) {
+          datos_usuario.login_validation = true;
+        }
+        res.send(JSON.stringify(datos_usuario));
       }
     }
   );
