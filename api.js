@@ -1,9 +1,16 @@
 const express = require('express');
 const mssql = require('mssql');
+const { createHash } = require('crypto');
 
 const app = express();
 const port = 8080;
 const ipAddr = 'localhost';
+
+function hashSHA3_256(data) {
+  const hash = createHash('sha3-256');
+  hash.update(data);
+  return hash.digest('hex');
+}
 
 const dbConfig = {
   user: process.env.MSSQL_USER,
@@ -49,7 +56,7 @@ app.get('/login/:user/:pass', async (req,res) => {
 
     let login_response = {login_validation:'0', user:user};
 
-    if (user_data['idUsuario'] == user && user_data['contraseña'] == pass) {
+    if (user_data['idUsuario'] == user && user_data['contraseña'] == hashSHA3_256(pass)) {
       login_response.login_validation = '1';
     }
 
