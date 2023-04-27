@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrate</title>
+    <link rel="stylesheet" href="index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
-    <link href="/css/register.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link
      rel="stylesheet"
      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
    />
    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-    <script src="https://kit.fontawesome.com/baf8be5cf7.js" crossorigin="anonymous"></script>
+    <title>Registrarse</title>
 </head>
 <body>
     <main>
@@ -22,20 +21,64 @@
             <img src="https://www.crackthecode.la/_next/image?url=%2Fimg_login.webp&w=640&q=75">
             <form>
                 <h1>¡Registrate!</h1>
-                <input id="IdPlayer" name="Gamertag" required type="text" placeholder="Gamer Tag">  
+                <div class="input">
+                    <label for="usuario">Nombre de Usuario</label>
+                    <input id="usuario" name="usuario" type="text" required placeholder="Usuario">
+                </div>  
                 <div class='double'>
-                    <input id="Name" name="Nombre" required type="text" placeholder="Nombre">
-                    <input id="LastName" name="Apellido" required type="text" placeholder="Apellido">
+                    <div class="input">
+                        <label for="nombre">Nombre</label>
+                        <input id="nombre" name="nombre" type="text" required placeholder="Nombre">
+                    </div>
+                    <div class="input">
+                        <label for="apellido">Apellido</label>
+                        <input id="apellido" name="apellido" type="text" required placeholder="Apellido">
+                    </div>
                 </div>
-                <input id="Contraseña" name="Password" required type="tel" placeholder="Contraseña">
-                <input id="ConfirmarContraseña" name="ConfirmPassword" required type="password" placeholder="Confirmar Contraseña">
+                <div class="input">
+                    <label for="contraseña">Contraseña</label>
+                    <input id="contraseña" name="contraseña" type="password" required placeholder="Contraseña">
+                </div>
+                <div class="input">
+                    <label>Confirmar Contraseña</label>
+                    <input id="nombre" name="nombre" type="password" required placeholder="Confirmar Contraseña">
+                </div>
                 <div class='double'>
-                    <input id="Correo" name="Email" required type="email" placeholder="Correo">
-                    <input id="Telefono" name="Phone" required type="tel" placeholder="Telefono">
+                    <div class="input">
+                        <label for="correo">Correo Electrónico</label>
+                        <input id="correo" name="correo" type="email" required placeholder="Correo">
+                    </div>
+                    <div class="input">
+                        <label for="telefono">Teléfono</label>
+                        <input id="telefono" name="telefono" type="tel" required placeholder="Telefono">
+                    </div>
                 </div>
                 <div class="double">
-                    <input id="FechaNacimiento" name="FechaNacimiento" required type="date" placeholder="Fecha Nacimiento">
-                    <input id="Pais" name="Country" required placeholder="Pais">
+                    <div class="input">
+                        <label for="fecha">Fecha de Nacimiento</label>
+                        <input id="fecha" name="fecha" type="date" required placeholder="Fecha Nacimiento">
+                    </div>
+                    <div class="input">
+                        <label for="country">País</label>
+                        <select id="country" name="country" required>
+                            <option value="">País</option>
+                            <option value="AR">Argentina</option>
+                            <option value="BO">Bolivia</option>
+                            <option value="BR">Brazil</option>
+                            <option value="CL">Chile</option>
+                            <option value="CO">Colombia</option>
+                            <option value="EC">Ecuador</option>
+                            <option value="FK">Falkland Islands (Malvinas)</option>
+                            <option value="GF">French Guiana</option>
+                            <option value="GY">Guyana</option>
+                            <option value="MX">México</option>
+                            <option value="PY">Paraguay</option>
+                            <option value="PE">Peru</option>
+                            <option value="SR">Suriname</option>
+                            <option value="UY">Uruguay</option>
+                            <option value="VE">Venezuela</option>
+                        </select>                
+                    </div>
                 </div>
                 <button class="btn">Registrarse</button>
             </form>
@@ -43,7 +86,7 @@
     </main>
 </body>
 <script>
-    const phoneInputField = document.querySelector("#Contraseña");
+    const phoneInputField = document.querySelector("#telefono");
     const phoneInput = window.intlTelInput(phoneInputField, {
       utilsScript:
         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
