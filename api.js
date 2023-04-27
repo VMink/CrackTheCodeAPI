@@ -36,7 +36,6 @@ connectDb();
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname+'/public'))
 app.use(express.json());
-app.use(bodyParser.json());
 
 app.get('/', (req,res) => {
     res.render('index')
