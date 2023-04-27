@@ -1,162 +1,118 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Apr 25, 2023 at 09:17 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `juego`
---
-CREATE Database juego;
-use juego;
--- --------------------------------------------------------
-
---
--- Table structure for table `habilidad`
---
-
-CREATE TABLE `habilidad` (
-  `idHabilidad` int(11) NOT NULL,
-  `idMinijuego` int(11) NOT NULL,
-  `nombreHabilidad` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `minijuego`
---
-
-CREATE TABLE `minijuego` (
-  `idMinijuego` int(11) NOT NULL,
-  `nombre` varchar(30) NOT NULL,
-  `cantidadNiveles` int(11) NOT NULL,
-  `puntajeMaximo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `partida`
---
-
-CREATE TABLE `partida` (
-  `idUsuario` int(11) NOT NULL,
-  `idPartida` int(11) NOT NULL,
-  `fechaHoraInicio` datetime NOT NULL,
-  `fechaHoraFinal` datetime NOT NULL,
-  `puntuacionAcumulada` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `partida-minijuego`
---
-
-CREATE TABLE `partida-minijuego` (
-  `idPartida` int(11) NOT NULL,
-  `idMinijuego` int(11) NOT NULL,
-  `nivelAlcanzado` int(11) NOT NULL,
-  `scoreHabilidadAlcanzado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `usuario`
---
-
-CREATE TABLE `usuario` (
-  `idUsuario` varchar(30) NOT NULL,
-  `Nombre` varchar(30) NOT NULL,
-  `Apellido` varchar(30) NOT NULL,
-  `fechaNacimiento` date NOT NULL,
-  `Contraseña` varchar(30) NOT NULL,
-  `correo` varchar(64) NOT NULL,
-  `telefono` varchar(15) NOT NULL,
-  `pais` varchar(30) NOT NULL,
-  `admin` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `habilidad`
---
-ALTER TABLE `habilidad`
-  ADD PRIMARY KEY (`idHabilidad`,`idMinijuego`),
-  ADD KEY `idMinijuego` (`idMinijuego`);
-
---
--- Indexes for table `minijuego`
---
-ALTER TABLE `minijuego`
-  ADD PRIMARY KEY (`idMinijuego`);
-
---
--- Indexes for table `partida`
---
-ALTER TABLE `partida`
-  ADD PRIMARY KEY (`idPartida`,`idUsuario`),
-  ADD KEY `idUsuario` (`idUsuario`);
-
---
--- Indexes for table `partida-minijuego`
---
-ALTER TABLE `partida-minijuego`
-  ADD PRIMARY KEY (`idPartida`,`idMinijuego`),
-  ADD KEY `idPartida` (`idPartida`,`idMinijuego`);
-
---
--- Indexes for table `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idUsuario`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `habilidad`
---
-ALTER TABLE `habilidad`
-  MODIFY `idHabilidad` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `minijuego`
---
-ALTER TABLE `minijuego`
-  MODIFY `idMinijuego` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `partida`
---
-ALTER TABLE `partida`
-  MODIFY `idPartida` int(11) NOT NULL AUTO_INCREMENT;
-
-
-insert into `usuario` (`idUsuario`,`Nombre`,`Apellido`,
-  `fechaNacimiento`,`Contraseña`,`correo`,`telefono`,`pais`)
-    values ('AldeDios','Aldehil','Sánchez','2003-07-05','12345',
-      'sanheraldehil@outlook.com','+525585578513','México');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+USE [juego]
+GO
+/****** Object:  Table [dbo].[habilidad]    Script Date: 26/04/2023 09:43:54 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[habilidad](
+	[idHabilidad] [int] IDENTITY(1,1) NOT NULL,
+	[idMinijuego] [int] NOT NULL,
+	[nombreHabilidad] [varchar](50) NULL,
+ CONSTRAINT [PK_habilidad] PRIMARY KEY CLUSTERED 
+(
+	[idHabilidad] ASC,
+	[idMinijuego] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[minijuego]    Script Date: 26/04/2023 09:43:54 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[minijuego](
+	[idMinijuego] [int] IDENTITY(1,1) NOT NULL,
+	[nombre] [varchar](50) NULL,
+	[cantidadNiveles] [int] NULL,
+	[puntajeMaximo] [int] NULL,
+ CONSTRAINT [PK_minijuego] PRIMARY KEY CLUSTERED 
+(
+	[idMinijuego] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[partida]    Script Date: 26/04/2023 09:43:54 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[partida](
+	[idUsuario] [varchar](50) NOT NULL,
+	[idPartida] [int] IDENTITY(1,1) NOT NULL,
+	[fechaHoraInicio] [datetime] NULL,
+	[fechaHoraFinal] [datetime] NULL,
+	[puntuacionAcumulada] [int] NULL,
+ CONSTRAINT [PK_partida] PRIMARY KEY CLUSTERED 
+(
+	[idUsuario] ASC,
+	[idPartida] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[partida-minijuego]    Script Date: 26/04/2023 09:43:54 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[partida-minijuego](
+	[idUsuario] [varchar](50) NOT NULL,
+	[idPartida] [int] NOT NULL,
+	[idMinijuego] [int] NOT NULL,
+	[nivelAlcanzado] [int] NULL,
+	[scoreHabilidadAlcanzado] [int] NULL,
+ CONSTRAINT [PK_partida-minijuego_1] PRIMARY KEY CLUSTERED 
+(
+	[idUsuario] ASC,
+	[idPartida] ASC,
+	[idMinijuego] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[usuario]    Script Date: 26/04/2023 09:43:54 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[usuario](
+	[idUsuario] [varchar](50) NOT NULL,
+	[nombre] [varchar](50) NULL,
+	[apellido] [varchar](50) NULL,
+	[fechaNacimiento] [date] NULL,
+	[contraseña] [varchar](50) NULL,
+	[correo] [varchar](50) NULL,
+	[telefono] [varchar](15) NULL,
+	[pais] [varchar](50) NULL,
+	[admin] [tinyint] NULL,
+ CONSTRAINT [PK_usuario] PRIMARY KEY CLUSTERED 
+(
+	[idUsuario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[usuario] ADD  CONSTRAINT [DF_usuario_admin]  DEFAULT ((0)) FOR [admin]
+GO
+ALTER TABLE [dbo].[habilidad]  WITH CHECK ADD  CONSTRAINT [FK_habilidad_minijuego] FOREIGN KEY([idMinijuego])
+REFERENCES [dbo].[minijuego] ([idMinijuego])
+GO
+ALTER TABLE [dbo].[habilidad] CHECK CONSTRAINT [FK_habilidad_minijuego]
+GO
+ALTER TABLE [dbo].[partida]  WITH CHECK ADD  CONSTRAINT [FK_partida_usuario] FOREIGN KEY([idUsuario])
+REFERENCES [dbo].[usuario] ([idUsuario])
+GO
+ALTER TABLE [dbo].[partida] CHECK CONSTRAINT [FK_partida_usuario]
+GO
+ALTER TABLE [dbo].[partida-minijuego]  WITH CHECK ADD  CONSTRAINT [FK_partida-minijuego_minijuego] FOREIGN KEY([idMinijuego])
+REFERENCES [dbo].[minijuego] ([idMinijuego])
+GO
+ALTER TABLE [dbo].[partida-minijuego] CHECK CONSTRAINT [FK_partida-minijuego_minijuego]
+GO
+ALTER TABLE [dbo].[partida-minijuego]  WITH CHECK ADD  CONSTRAINT [FK_partida-minijuego_partida] FOREIGN KEY([idUsuario], [idPartida])
+REFERENCES [dbo].[partida] ([idUsuario], [idPartida])
+GO
+ALTER TABLE [dbo].[partida-minijuego] CHECK CONSTRAINT [FK_partida-minijuego_partida]
+GO
+USE [master]
+GO
+ALTER DATABASE [juego] SET  READ_WRITE 
+GO
