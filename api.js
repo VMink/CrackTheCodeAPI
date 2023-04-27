@@ -1,7 +1,6 @@
 const express = require('express');
 const mssql = require('mssql');
 const { createHash } = require('crypto');
-const bodyParser = require('body-parser')
 
 const app = express();
 const port = 8080;
