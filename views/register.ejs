@@ -9,6 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"> 
     <link href="/css/register.css" rel="stylesheet" type="text/css">
+    <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+   />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script src="https://kit.fontawesome.com/baf8be5cf7.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -26,7 +31,7 @@
                 <input id="ConfirmarContraseña" name="ConfirmPassword" required type="password" placeholder="Confirmar Contraseña">
                 <div class='double'>
                     <input id="Correo" name="Email" required type="email" placeholder="Correo">
-                    <input id="Telefono" name="Phone" required  placeholder="Telefono">
+                    <input id="Telefono" name="Phone" required type="tel" placeholder="Telefono">
                 </div>
                 <div class="double">
                     <input id="FechaNacimiento" name="FechaNacimiento" required type="date" placeholder="Fecha Nacimiento">
@@ -37,4 +42,11 @@
         </section>
     </main>
 </body>
+<script>
+    const phoneInputField = document.querySelector("#Telefono");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+  </script>
 </html>
