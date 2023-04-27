@@ -69,9 +69,9 @@ app.get('/login/:user/:pass', async (req,res) => {
 })
 
 app.post('/register', (req, res) => {
-  const { name, email, password } = req.body;
-  console.log(name);
-  res.send(name,email,password);
+  const datos = req.body;
+  console.log(datos);
+  res.send(datos);
 });
 
 app.listen(port,() => {
