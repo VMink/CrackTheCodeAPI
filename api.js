@@ -61,7 +61,7 @@ app.get('/login/:user/:pass', async (req,res) => {
 
     let login_response = {login_validation:'0', user:user};
 
-    if (user_data && user_data['idUsuario'] == user && user_data['contraseña'] == hashSHA3_256(pass)) {
+    if (user_data['idUsuario'] == user && user_data['contraseña'] == hashSHA3_256(pass)) {
       login_response.login_validation = '1';
     }
 
