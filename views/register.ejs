@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,38 +19,38 @@
     <main>
         <section class="container">
             <img src="https://www.crackthecode.la/_next/image?url=%2Fimg_login.webp&w=640&q=75">
-            <form>
+            <form action="52.55.120.19:8080/register" method="POST">
                 <h1>¡Registrate!</h1>
                 <div class="input">
                     <label for="usuario">Nombre de Usuario</label>
-                    <input id="usuario" name="usuario" type="text" required placeholder="Usuario">
+                    <input id="usuario" name="usuario" type="text" maxlength="50" required placeholder="Usuario">
                 </div>  
                 <div class='double'>
                     <div class="input">
                         <label for="nombre">Nombre</label>
-                        <input id="nombre" name="nombre" type="text" required placeholder="Nombre">
+                        <input id="nombre" name="nombre" type="text" maxlength="50" required placeholder="Nombre">
                     </div>
                     <div class="input">
                         <label for="apellido">Apellido</label>
-                        <input id="apellido" name="apellido" type="text" required placeholder="Apellido">
+                        <input id="apellido" name="apellido" type="text" maxlength="50" required placeholder="Apellido">
                     </div>
                 </div>
                 <div class="input">
                     <label for="contraseña">Contraseña</label>
-                    <input id="contraseña" name="contraseña" type="password" required placeholder="Contraseña">
+                    <input id="contraseña" name="contraseña" type="password" maxlength="64" required placeholder="Contraseña">
                 </div>
                 <div class="input">
                     <label>Confirmar Contraseña</label>
-                    <input id="nombre" name="nombre" type="password" required placeholder="Confirmar Contraseña">
+                    <input id="nombre" name="nombre" type="password" maxlength="64" required placeholder="Confirmar Contraseña">
                 </div>
                 <div class='double'>
                     <div class="input">
                         <label for="correo">Correo Electrónico</label>
-                        <input id="correo" name="correo" type="email" required placeholder="Correo">
+                        <input id="correo" name="correo" type="email" maxlength="50" required placeholder="Correo">
                     </div>
                     <div class="input">
                         <label for="telefono">Teléfono</label>
-                        <input id="telefono" name="telefono" type="tel" required placeholder="Telefono">
+                        <input id="telefono" name="telefono" type="tel" maxlength="15" required placeholder="Telefono">
                     </div>
                 </div>
                 <div class="double">

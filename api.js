@@ -74,7 +74,7 @@ app.get('/login/:user/:pass', async (req,res) => {
 
 app.post('/register', (req, res) => {
   const datos = req.query;
-  console.log(datos.name);
+  console.log(datos);
   res.send(datos);
 });
 
