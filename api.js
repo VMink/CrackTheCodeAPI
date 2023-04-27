@@ -70,7 +70,7 @@ app.get('/login/:user/:pass', async (req,res) => {
 app.post('/register', (req,res) => {
   const valor = req.body['valor'];
   res.contentType('text/plain');
-  res.send(dato);
+  res.send(valor);
 })
 
 app.listen(port,() => {
