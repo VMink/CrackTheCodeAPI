@@ -53,7 +53,7 @@ app.get('/login/:user/:pass', async (req,res) => {
 
     const request = mssql.Request(dbConfig);
     request.input('user',user);
-    const rows = (await mssql.query`select idUsuario,contraseña from usuario where idUsuario = @user`).recordset;
+    const rows = (await request.query`select idUsuario,contraseña from usuario where idUsuario = @user`).recordset;
 
     const user_data = rows[0];
 
