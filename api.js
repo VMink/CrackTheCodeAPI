@@ -39,37 +39,22 @@ app.get('/register/page', (req,res) =>  {
 })
 
 app.get('/login/:user/:pass', async (req,res) => {
-  // let user = req.params.user;
-  // let sql = "select idUsuario,Contraseña from usuario where idUsuario = ?";
-  // connection.query(
-  //   sql,[user],
-  //   (err, result) => {
-  //     if (err) {
-  //       throw err;
-  //     } else {
-  //       res.contentType('text/json');
-  //       let datos_usuario = {login_validation:false, id_user:req.params.user}
-  //       if (result[0].idUsuario = req.params.user && result[0]['Contraseña'] == req.params.pass) {
-  //         datos_usuario.login_validation = true;
-  //       }
-  //       res.send(JSON.stringify(datos_usuario));
-  //     }
-  //   }
-  // );
   try {
     const user = req.params.user;
     const pass = req.params.pass;
 
     const rows = (await mssql.query`select idUsuario,contraseña from usuario where idUsuario = ${user}`).recordset;
-    console.log(rows);
 
     const user_data = rows[0];
-    console.log(user_data);
-    console.log(user_data['idUser']);
-    console.log(user_data['contraseña']);
 
-    res.contentType('text/plain');
-    res.send('Hecho');
+    let login_response = {login_validation:'0', user:user};
+
+    if (user_data['idUsuario'] == user && user_data['contraseña'] == pass) {
+      login_response.login_validation = '1';
+    }
+
+    res.json(login_response);
+
   } catch (err) {
     res.json(err);
   }
