@@ -68,7 +68,7 @@ app.get('/login/:user/:pass', async (req,res) => {
 })
 
 app.post('/register', (req,res) => {
-  let {valor} = req.body;
+  let {valor,} = req.body;
   res.send(valor);
 })
 
