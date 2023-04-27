@@ -6,10 +6,10 @@ const port = 8080;
 const ipAddr = 'localhost';
 
 const dbConfig = {
-  user: 'sa',
-  password: '7LhDkK$M',
+  user: process.env.MSSQL_USER,
+  password: process.env.MSSQL_PASSWORD,
   database: 'juego',
-  server: '52.55.120.19',
+  server: 'localhost',
   pool: { max: 10, min: 0, idleTimeoutMillis: 30000 },
   options: { trustServerCertificate: true }
 };
@@ -38,7 +38,7 @@ app.get('/register/page', (req,res) =>  {
   res.render('register')
 })
 
-app.get('/login/:user/:pass', (req,res) => {
+app.get('/login/:user/:pass', async (req,res) => {
   // let user = req.params.user;
   // let sql = "select idUsuario,Contraseña from usuario where idUsuario = ?";
   // connection.query(
@@ -56,6 +56,16 @@ app.get('/login/:user/:pass', (req,res) => {
   //     }
   //   }
   // );
+  try {
+    const user = req.params.user;
+    const pass = req.params.pass;
+    const rows = (await mssql.query`select idUsuario,contraseña from usuario where idUsuario = ${user}`).recordset;
+    console.log(rows);
+    res.contentType('text/plain');
+    res.send('Hecho');
+  } catch (err) {
+    res.json(err);
+  }
 })
 
 app.listen(port,() => {
