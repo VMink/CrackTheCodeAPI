@@ -53,7 +53,9 @@ app.get('/login/:user/:pass', async (req,res) => {
     const pass = req.params.pass;
 
     const query = "select idUsuario,contraseña from usuario where idUsuario = @user";
-    const result = await mssql.query(query, { user });
+    const request = new mssql.Request();
+    request.input('user', mssql.VarChar, user);
+    const result = await request.query(query);
 
     const user_data = result.recordset[0];
 
