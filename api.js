@@ -71,7 +71,7 @@ app.get('/login/:user/:pass', async (req,res) => {
 app.post('/register', (req, res) => {
   const { name, email, password } = req.body;
   // aquí irá el código para guardar los datos en una base de datos o hacer cualquier otra operación
-  console.log(name);
+  console.log(req.body);
   res.send(name);
 });
 
