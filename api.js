@@ -59,8 +59,15 @@ app.get('/login/:user/:pass', async (req,res) => {
   try {
     const user = req.params.user;
     const pass = req.params.pass;
+
     const rows = (await mssql.query`select idUsuario,contraseña from usuario where idUsuario = ${user}`).recordset;
     console.log(rows);
+
+    const user_data = JSON.parse(rows[0]);
+    console.log(user_data);
+    console.log(user_data['idUser']);
+    console.log(user_data['contraseña']);
+
     res.contentType('text/plain');
     res.send('Hecho');
   } catch (err) {
