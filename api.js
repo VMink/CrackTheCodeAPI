@@ -70,7 +70,7 @@ app.get('/login/:user/:pass', async (req,res) => {
 app.post('/register', (req, res) => {
   const { name, email, password } = req.body;
   // aquí irá el código para guardar los datos en una base de datos o hacer cualquier otra operación
-  res.send(name);
+  res.send('Hecho');
 });
 
 app.listen(port,() => {
