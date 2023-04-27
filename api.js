@@ -68,7 +68,7 @@ app.get('/login/:user/:pass', async (req,res) => {
 })
 
 app.post('/register', (req,res) => {
-  const valor = express.json(req.body);
+  const valor = JSON.stringify(req.body);
   res.send(valor);
 })
 
