@@ -68,7 +68,7 @@ app.get('/login/:user/:pass', async (req,res) => {
 })
 
 app.post('/register', (req,res) => {
-  dato = req.body.dato;
+  const dato = req.body.dato;
   res.contentType('text/plain');
   res.send(dato);
 })
