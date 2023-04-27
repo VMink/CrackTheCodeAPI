@@ -7,7 +7,7 @@ function handleSubmit(event) {
     console.log(formData)
     fetch("http://52.55.120.19:8080/register", {
         method: 'POST',
-        body: formData
+        body: JSON.parse(formData)
     })
     .then(response => response.text())
     .then(result => {
