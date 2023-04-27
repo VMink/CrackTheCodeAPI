@@ -46,18 +46,20 @@ app.get('/register/page', (req,res) =>  {
   res.render('register')
 })
 
+
 app.get('/login/:user/:pass', async (req,res) => {
   try {
     const user = req.params.user;
     const pass = req.params.pass;
 
-    const rows = (await mssql.query`select idUsuario,contraseña from usuario where idUsuario = ${user}`).recordset;
+    const query = "select idUsuario,contraseña from usuario where idUsuario = @user";
+    const result = await mssql.query(query, { user });
 
-    const user_data = rows[0];
+    const user_data = result.recordset[0];
 
     let login_response = {login_validation:'0', user:user};
 
-    if (user_data['idUsuario'] == user && user_data['contraseña'] == hashSHA3_256(pass)) {
+    if (user_data && user_data['idUsuario'] == user && user_data['contraseña'] == hashSHA3_256(pass)) {
       login_response.login_validation = '1';
     }
 
