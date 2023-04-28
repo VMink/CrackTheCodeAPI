@@ -58,7 +58,6 @@ app.get('/login/:user/:pass', async (req,res) => {
 
     request.query(query, (err, result) => {
       if (err) {
-        res.status(500);
         res.json(err);
       } else {
         const user_data = result.recordset[0];
@@ -68,8 +67,6 @@ app.get('/login/:user/:pass', async (req,res) => {
         if (user_data && user_data['idUsuario'] == user && user_data['contraseña'] == hashSHA3_256(pass)) {
           login_response.login_validation = '1';
         }
-
-        res.status(200);
         res.json(login_response);
       }
     });
@@ -95,18 +92,15 @@ app.post('/register', (req, res) => {
     request.input('telefono', mssql.VarChar, telefono);
     request.input('pais', mssql.VarChar, pais);
 
-    res.contentType('text/plain');
     request.query(query, (err, result) => {
       if (err) {
-        res.status(500);
         if (err.number == 2667) {
-          res.send('Gamertag existente')
+          res.json({error:'Gamertag existente'})
         } else {
-          res.send('Ocurrió un error');
+          res.json({error:'Ocurrió un error'});
         }
       } else {
-        res.status(200);
-        res.send(`Se ha registrado correctamente el usuario ${idUsuario}`);
+        res.json({error:'no', response:`Se ha registrado correctamente el usuario ${idUsuario}`});
       }
     });
   } catch (err) {
