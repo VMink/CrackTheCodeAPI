@@ -16,9 +16,9 @@ function handleSubmit(event) {
     .then(response => response.json())
     .then(result => {
         if (result.error == 'si') {
-            alert('Error: ', result.respuesta);
+            alert('Error: ', result.resultado);
         } else {
-            alert('Cuenta registrada!/n',result.respuesta);
+            alert('Cuenta registrada!/n',result.resultado);
         }
     })
     .catch(error => {
