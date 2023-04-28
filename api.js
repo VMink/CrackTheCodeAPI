@@ -74,8 +74,8 @@ app.get('/login/:user/:pass', async (req,res) => {
 
 app.post('/register', (req, res) => {
   try {
-    const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais} = req.body;
-    console.log(correo);
+    const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,corre,telefono,pais} = req.body;
+    console.log(corre);
     res.json(idUsuario);
   } catch (err) {
     res.json(err);
