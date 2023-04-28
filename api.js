@@ -4,7 +4,7 @@ const { createHash } = require('crypto');
 
 const app = express();
 const port = 8080;
-const ipAddr = 'localhost';
+const ipAddr = '52.55.120.19';
 
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname+'/public'))
@@ -110,5 +110,5 @@ app.post('/register', (req, res) => {
 });
 
 app.listen(port,() => {
-    console.log('funciona!!!');
+    console.log('Servidor corriendo en : http://' + ipAddr + ':' + port.toString());
 })
