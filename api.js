@@ -55,17 +55,23 @@ app.get('/login/:user/:pass', async (req,res) => {
     const query = "select idUsuario,contraseña from usuario where idUsuario = @user";
     const request = new mssql.Request();
     request.input('user', mssql.VarChar, user);
-    const result = await request.query(query);
 
-    const user_data = result.recordset[0];
+    request.query(query, (err, result) => {
+      if (err) {
+        console.error(err);
+        res.json(err);
+      } else {
+        const user_data = result.recordset[0];
 
-    let login_response = {login_validation:'0', user:user};
+        let login_response = {login_validation:'0', user:user};
 
-    if (user_data && user_data['idUsuario'] == user && user_data['contraseña'] == hashSHA3_256(pass)) {
-      login_response.login_validation = '1';
-    }
+        if (user_data && user_data['idUsuario'] == user && user_data['contraseña'] == hashSHA3_256(pass)) {
+          login_response.login_validation = '1';
+        }
 
-    res.json(login_response);
+        res.json(login_response);
+      }
+    });
 
   } catch (err) {
     res.json(err);
