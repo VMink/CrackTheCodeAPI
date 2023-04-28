@@ -82,7 +82,7 @@ app.post('/register', (req, res) => {
     request.input('nombre', mssql.VarChar, nombre);
     request.input('apellido', mssql.VarChar, apellido);
     request.input('fechaNacimiento', mssql.Date, fechaNacimiento);
-    request.input('contraseña', mssql.VarChar, contraseña);
+    request.input('contraseña', mssql.VarChar, hashSHA3_256(contraseña));
     request.input('correo', mssql.VarChar, correo);
     request.input('telefono', mssql.VarChar, telefono);
     request.input('pais', mssql.VarChar, pais);
