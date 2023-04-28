@@ -13,6 +13,8 @@ function handleSubmit(event) {
     console.log(phoneNumber)
     const formData = new FormData(event.target);
     const jsonData = Object.fromEntries(formData.entries());
+    jsonData.phone = phoneInput;
+    console.log(jsonData)
     fetch("http://52.55.120.19:8080/register", {
         method: 'POST',
         headers: {
