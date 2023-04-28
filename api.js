@@ -58,7 +58,7 @@ app.get('/login/:user/:pass', async (req,res) => {
 
     request.query(query, (err, result) => {
       if (err) {
-        console.error(err);
+        res.status(500);
         res.json(err);
       } else {
         const user_data = result.recordset[0];
@@ -69,11 +69,13 @@ app.get('/login/:user/:pass', async (req,res) => {
           login_response.login_validation = '1';
         }
 
+        res.status(200);
         res.json(login_response);
       }
     });
 
   } catch (err) {
+    res.status(500);
     res.json(err);
   }
 })
@@ -93,17 +95,22 @@ app.post('/register', (req, res) => {
     request.input('telefono', mssql.VarChar, telefono);
     request.input('pais', mssql.VarChar, pais);
 
+    res.contentType('text/plain');
     request.query(query, (err, result) => {
       if (err) {
-        console.error(err);
-        res.json(err);
+        res.status(500);
+        if (err.number == 2667) {
+          res.send('Gamertag existente')
+        } else {
+          res.send('Ocurrió un error');
+        }
       } else {
-        console.log('Valores insertados correctamente');
-        console.log(result);
-        res.json(result);
+        res.status(200);
+        res.send(`Se ha registrado correctamente el usuario ${idUsuario}`);
       }
     });
   } catch (err) {
+    res.status(500);
     res.json(err);
   }
 });
