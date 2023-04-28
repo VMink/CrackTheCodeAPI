@@ -15,8 +15,11 @@ function handleSubmit(event) {
     })
     .then(response => response.json())
     .then(result => {
-        console.log('Success: ', result);
-        alert('Hecho')
+        if (result.error == 'si') {
+            alert('Error: ', result.respuesta);
+        } else {
+            alert('Cuenta registrada!/n',result.respuesta);
+        }
     })
     .catch(error => {
         console.log('Error: ', error)
