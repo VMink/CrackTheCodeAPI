@@ -13,6 +13,7 @@ function handleSubmit(event) {
     .then(response => response.json())
     .then(result => {
         console.log('Success: ', result);
+        alert('Hecho')
     })
     .catch(error => {
         console.log('Error: ', error)
