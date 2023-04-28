@@ -94,7 +94,7 @@ app.post('/register', (req, res) => {
 
     request.query(query, (err, result) => {
       if (err) {
-        if (err.number == 2667) {
+        if (err.number == 2627) {
           res.json({error:'si', resultado:'Gamertag existente'})
         } else {
           res.json({error:'si', resultado:'Ocurrió un error al registrar su cuenta, inténtelo nuevamente'});
