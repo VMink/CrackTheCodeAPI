@@ -49,12 +49,14 @@ app.get('/register/page', (req,res) =>  {
 
 app.get('/login/:user/:pass', async (req,res) => {
   try {
-    const user = req.params.user;
-    const pass = req.params.pass;
+    // const user = req.params.user;
+    // const pass = req.params.pass;
+
+    const {idUsuario,contraseña} = req.body;
 
     const query = "select idUsuario,contraseña from usuario where idUsuario = @user";
     const request = new mssql.Request();
-    request.input('user', mssql.VarChar, user);
+    request.input('user', mssql.VarChar, idUsuario);
 
     request.query(query, (err, result) => {
       if (err) {
@@ -62,9 +64,9 @@ app.get('/login/:user/:pass', async (req,res) => {
       } else {
         const user_data = result.recordset[0];
 
-        let login_response = {login_validation:'0', user:user};
+        let login_response = {login_validation:'0', idUsuario:idUsuario};
 
-        if (user_data && user_data['idUsuario'] == user && user_data['contraseña'] == hashSHA3_256(pass)) {
+        if (user_data && user_data['idUsuario'] == idUsuario && user_data['contraseña'] == hashSHA3_256(contraseña)) {
           login_response.login_validation = '1';
         }
         res.json(login_response);
