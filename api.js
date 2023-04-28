@@ -109,6 +109,12 @@ app.post('/register', (req, res) => {
   }
 });
 
+
+// Página 404
+app.use((req, res) => {
+  res.type('text/plain').status(404).send('404 - Not Found');
+});
+
 app.listen(port,() => {
     console.log('Servidor corriendo en : http://' + ipAddr + ':' + port.toString());
 })
