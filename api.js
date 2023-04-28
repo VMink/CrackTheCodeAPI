@@ -47,7 +47,7 @@ app.get('/register/page', (req,res) =>  {
 })
 
 
-app.get('/login/:user/:pass', async (req,res) => {
+app.get('/login', async (req,res) => {
   try {
     // const user = req.params.user;
     // const pass = req.params.pass;
