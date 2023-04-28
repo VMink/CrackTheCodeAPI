@@ -74,9 +74,29 @@ app.get('/login/:user/:pass', async (req,res) => {
 
 app.post('/register', (req, res) => {
   try {
-    const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,corre,telefono,pais} = req.body;
-    console.log(corre);
-    res.json(idUsuario);
+    const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais} = req.body;
+    const query = "insert into usuario (idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais) values (@idUsuario,@nombre,@apellido,@fechaNacimiento,@contraseña,@correo,@telefono,@pais)";
+
+    const request = new mssql.Request();
+    request.input('idUsuario', mssql.VarChar, idUsuario);
+    request.input('nombre', mssql.VarChar, nombre);
+    request.input('apellido', mssql.VarChar, apellido);
+    request.input('fechaNacimiento', mssql.Date, fechaNacimiento);
+    request.input('contraseña', mssql.VarChar, contraseña);
+    request.input('correo', mssql.VarChar, correo);
+    request.input('telefono', mssql.VarChar, telefono);
+    request.input('pais', mssql.VarChar, pais);
+
+    request.query(query, (err, result) => {
+      if (err) {
+        console.error(err);
+        res.json(err);
+      } else {
+        console.log('Valores insertados correctamente');
+        console.log(result);
+        res.json(result);
+      }
+    });
   } catch (err) {
     res.json(err);
   }
