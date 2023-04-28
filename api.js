@@ -6,6 +6,10 @@ const app = express();
 const port = 8080;
 const ipAddr = 'localhost';
 
+app.set('view engine', 'ejs')
+app.use(express.static(__dirname+'/public'))
+app.use(express.json());
+
 function hashSHA3_256(data) {
   const hash = createHash('sha3-256');
   hash.update(data);
@@ -32,10 +36,6 @@ async function connectDb() {
 }
 
 connectDb();
-
-app.set('view engine', 'ejs')
-app.use(express.static(__dirname+'/public'))
-app.use(express.json());
 
 app.get('/', (req,res) => {
     res.render('index')
@@ -73,9 +73,13 @@ app.get('/login/:user/:pass', async (req,res) => {
 })
 
 app.post('/register', (req, res) => {
-  const datos = req.body;
-  console.log(datos);
-  res.send(datos);
+  try {
+    const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais} = req.body;
+    console.log(correo);
+    res.json(idUsuario);
+  } catch (err) {
+    res.json(err);
+  }
 });
 
 app.listen(port,() => {
