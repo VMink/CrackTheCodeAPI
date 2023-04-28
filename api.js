@@ -39,12 +39,12 @@ connectDb();
 
 app.get('/', (req,res) => {
     res.render('index')
-})
+});
 
 
 app.get('/register/page', (req,res) =>  {
   res.render('register')
-})
+});
 
 
 app.get('/login', async (req,res) => {
@@ -77,7 +77,7 @@ app.get('/login', async (req,res) => {
     res.status(500);
     res.json(err);
   }
-})
+});
 
 app.post('/register', (req, res) => {
   try {
@@ -111,6 +111,57 @@ app.post('/register', (req, res) => {
   }
 });
 
+app.post('/register_score', (req,res) => {
+  try {
+    const {idUsuario, fechaHoraFinal, puntuacionAcumulada} = req.body;
+
+    const query = "UPDATE partida SET fechaHoraFinal = @fechaHoraFinla, puntuacionAcumulada = @puntuacionAcumulada WHERE idUsuario = @idUsuario;"
+    
+    const request = new mssql.Request();
+    request.input('idUsuario', mssql.VarChar, idUsuario);
+    request.input('fechaHoraFinal', mssql.DateTime, fechaHoraFinal);
+    request.input('puntuacionAcumulada', mssql.Int, puntuacionAcumulada);
+
+    request.query(query, (err,result) => {
+      res.contentType('text/plain');
+      if (err) {
+        res.send('Error al registrar tus datos en la nube');
+      } else {
+        res.send('Datos registrados con exito en la nube');
+      }
+    })
+
+  } catch {
+    res.status(500);
+    res.json(err);
+  }
+})
+
+
+app.post('/register_game', (req,res) => {
+  try {
+    const {idUsuario,fechaHoraInicio} = req.body;
+    const query = "insert into partida (idUsuario,fechaHoraInicio) values (@idUsuario,@fechaHoraInicio);";
+
+    const request = new mssql.Request();
+    request.input('idUsuario', mssql.VarChar, idUsuario);
+    request.input('fechaHoraInicio', mssql.DateTime, fechaHoraInicio);
+
+    request.query(query, (err,result) => {
+      if (err) {
+        res.contentType('text/plain');
+        res.send('Error al registrar tu partida');
+      } else {
+        res.json(result);
+      }
+    })
+
+  } catch {
+    res.status(500);
+    res.json(err);
+  }
+});
+
 
 // Página 404
 app.use((req, res) => {
@@ -119,4 +170,4 @@ app.use((req, res) => {
 
 app.listen(port,() => {
     console.log('Servidor corriendo en : http://' + ipAddr + ':' + port.toString());
-})
+});
