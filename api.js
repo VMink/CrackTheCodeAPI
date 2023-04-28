@@ -81,7 +81,7 @@ app.get('/login', async (req,res) => {
 
 app.post('/register', (req, res) => {
   try {
-    const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais} = req.body;
+    const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,clave_telefono_pais,pais} = req.body;
     const query = "insert into usuario (idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais) values (@idUsuario,@nombre,@apellido,@fechaNacimiento,@contraseña,@correo,@telefono,@pais)";
 
     const request = new mssql.Request();
@@ -91,7 +91,7 @@ app.post('/register', (req, res) => {
     request.input('fechaNacimiento', mssql.Date, fechaNacimiento);
     request.input('contraseña', mssql.VarChar, hashSHA3_256(contraseña));
     request.input('correo', mssql.VarChar, correo);
-    request.input('telefono', mssql.VarChar, telefono);
+    request.input('telefono', mssql.VarChar, clave_telefono_pais + " " + telefono);
     request.input('pais', mssql.VarChar, pais);
 
     request.query(query, (err, result) => {
