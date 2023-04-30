@@ -121,7 +121,7 @@ app.post('/register-score', (req,res) => {
     const query = "UPDATE partida SET fechaHoraFinal = @fechaHoraFinal, puntuacionAcumulada = @puntuacionAcumulada WHERE idPartida = @idPartida;"
     
     const request = new mssql.Request();
-    request.input('idPartida', mssql.int, idPartida);
+    request.input('idPartida', mssql.Int, idPartida);
     request.input('fechaHoraFinal', mssql.DateTime, fechaHoraFinal);
     request.input('puntuacionAcumulada', mssql.Int, puntuacionAcumulada);
 
