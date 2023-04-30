@@ -5,7 +5,8 @@ mydb = mysql.connector.connect(
   host="localhost",
   user="sa",
   password="7LhDkK$M",
-  database="juego"
+  database="juego",
+  port=1433
 )
 
 # Crear un cursor
