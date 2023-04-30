@@ -154,7 +154,7 @@ app.post('/register-game', (req,res) => {
         res.status(500);
         res.json(err);
       } else {
-        res.json(result.recordset);
+        res.json(result.recordset[0]);
       }
     })
 
