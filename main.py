@@ -37,4 +37,11 @@ with open('CSV/usuarios.csv','w') as file:
         fechaNacimiento = usuario[3].strftime('%Y-%m-%d')
         file.write(f'{usuario[0]},{usuario[1]},{usuario[2]},{fechaNacimiento},{usuario[4]},{usuario[5]},{usuario[6]},{usuario[7]},{usuario[8]}\n')
 
+with open('CSV/partidas.csv','w') as file:
+    file.write('idUsuario,idPartida,Fecha y hora de Inicio,Fecha y hora final,Puntuación Acumulada\n')
+    for partida in partidas:
+        fechaInicio = partida[2].strftime('%Y-%m-%d %H:%M:%S')
+        fechaFin = partida[3].strftime('%Y-%m-%d %H:%M:%S')
+        file.write(f'{partida[0]},{partida[1]},{fechaInicio},{fechaFin},{partida[0]}')
+
 connection.close()
