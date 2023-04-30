@@ -6,7 +6,7 @@ connection = pymssql.connect(server='localhost', user='sa', password='7LhDkK$M',
 cursor = connection.cursor()
 
 cursor.execute('select count(*) from usuario;')
-count_idUsuario = cursor.fetchone()
+count_idUsuario = cursor.fetchone()[0]
 
 print(count_idUsuario)
 
