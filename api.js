@@ -128,6 +128,7 @@ app.post('/register-score', (req,res) => {
     request.query(query, (err,result) => {
       res.contentType('text/plain');
       if (err) {
+        console.log(err);
         res.status(500);
         res.json(err);
       } else {
@@ -136,6 +137,7 @@ app.post('/register-score', (req,res) => {
     })
 
   } catch (err) {
+    console.log(err);
     res.status(500);
     res.json(err);
   }
