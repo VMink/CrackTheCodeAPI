@@ -79,6 +79,10 @@ app.get('/login', async (req,res) => {
   }
 });
 
+app.get('/admin/login', (req, res) => {
+    res.render('admin_login')
+})
+
 app.post('/register', (req, res) => {
   try {
     const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,clave_telefono_pais,pais} = req.body;

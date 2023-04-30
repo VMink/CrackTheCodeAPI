@@ -19,15 +19,9 @@ main {
     background: linear-gradient(90deg, rgba(109,242,242,1) 0%, rgba(142,132,253,1) 100%);
 }
 
-.container {
-    display:  flex;
-    width: 1000px;
-    height: 620px;
-}
-
 form {
-    width: 50%;
-    height: 100%;
+    width: 400px;
+    height: 400px;
     background: white;
     border-radius: 20px;
     padding: 40px;
@@ -47,23 +41,13 @@ form h1 {
     margin: 5px 0;
 }
 
-form input, select { 
+form input { 
     background-color: white;
     font-size: 16px;
     color: black;
     padding: 10px;
     border: 2px solid black;
     border-radius: 10px;
-}
-
-form .double {
-    display: flex;
-    justify-content: space-between;
-}
-
-form .double .input {
-    width: 49%;
-    max-width: 205px;
 }
 
 .btn {
@@ -73,42 +57,15 @@ form .double .input {
     height: 40px;
     border: none;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 50px;
 }
 
 #telefono {
     width: 205px;
 }
 
-@media all and (max-width: 1050px) {
-    main img {
-        display: none;
-    }
-    .container {
-        width: 500px;
-    }
+@media all and (max-width: 450px) {
     form {
-        width: 500px
-    }
-}
-
-@media all and (max-width: 510px) {
-    .container {
-        width: 350px;
-        height: auto;
-    }
-    form {
-        height: auto;
-        width: 350px
-    }
-    form .double {
-        flex-direction: column;
-    }
-    form .double .input {
-        width: 100%;
-        max-width: 100%;
-    }
-    #telefono {
-        width: 100%;
+        width: 300px;
     }
 }
