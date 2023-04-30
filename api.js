@@ -58,6 +58,7 @@ app.get('/login', async (req,res) => {
 
     request.query(query, (err, result) => {
       if (err) {
+        res.status(500);
         res.json(err);
       } else {
         const user_data = result.recordset[0];
@@ -115,21 +116,22 @@ app.post('/register', (req, res) => {
 
 app.post('/register-score', (req,res) => {
   try {
-    const {idUsuario, fechaHoraFinal, puntuacionAcumulada} = req.body;
+    const {idPartida, fechaHoraFinal, puntuacionAcumulada} = req.body;
 
-    const query = "UPDATE partida SET fechaHoraFinal = @fechaHoraFinal, puntuacionAcumulada = @puntuacionAcumulada WHERE idUsuario = @idUsuario;"
+    const query = "UPDATE partida SET fechaHoraFinal = @fechaHoraFinal, puntuacionAcumulada = @puntuacionAcumulada WHERE idPartida = @idPartida;"
     
     const request = new mssql.Request();
-    request.input('idUsuario', mssql.VarChar, idUsuario);
+    request.input('idPartida', mssql.int, idPartida);
     request.input('fechaHoraFinal', mssql.DateTime, fechaHoraFinal);
     request.input('puntuacionAcumulada', mssql.Int, puntuacionAcumulada);
 
     request.query(query, (err,result) => {
       res.contentType('text/plain');
       if (err) {
-        res.send('Error al registrar tus datos en la nube');
+        res.status(500);
+        res.json(err);
       } else {
-        res.send('Datos registrados con exito en la nube');
+        res.json({rowsAffected:result.rowsAffected[0]});
       }
     })
 
