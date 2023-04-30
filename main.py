@@ -41,7 +41,8 @@ with open('CSV/partidas.csv','w') as file:
     file.write('idUsuario,idPartida,Fecha y hora de Inicio,Fecha y hora final,Puntuación Acumulada\n')
     for partida in partidas:
         fechaInicio = partida[2].strftime('%Y-%m-%d %H:%M:%S')
-        fechaFin = partida[3].strftime('%Y-%m-%d %H:%M:%S')
+        if not partida[3] is None:
+            fechaFin = partida[3].strftime('%Y-%m-%d %H:%M:%S')
         file.write(f'{partida[0]},{partida[1]},{fechaInicio},{fechaFin},{partida[0]}')
 
 connection.close()
