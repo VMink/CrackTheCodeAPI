@@ -117,7 +117,7 @@ app.post('/register-score', (req,res) => {
   try {
     const {idUsuario, fechaHoraFinal, puntuacionAcumulada} = req.body;
 
-    const query = "UPDATE partida SET fechaHoraFinal = @fechaHoraFinla, puntuacionAcumulada = @puntuacionAcumulada WHERE idUsuario = @idUsuario;"
+    const query = "UPDATE partida SET fechaHoraFinal = @fechaHoraFinal, puntuacionAcumulada = @puntuacionAcumulada WHERE idUsuario = @idUsuario;"
     
     const request = new mssql.Request();
     request.input('idUsuario', mssql.VarChar, idUsuario);
@@ -143,7 +143,7 @@ app.post('/register-score', (req,res) => {
 app.post('/register-game', (req,res) => {
   try {
     const {idUsuario,fechaHoraInicio} = req.body;
-    const query = "insert into partida (idUsuario,fechaHoraInicio) values (@idUsuario,@fechaHoraInicio);";
+    const query = "insert into partida (idUsuario,fechaHoraInicio) values (@idUsuario,@fechaHoraInicio); select SCOPE_IDENTITY();";
 
     const request = new mssql.Request();
     request.input('idUsuario', mssql.VarChar, idUsuario);
