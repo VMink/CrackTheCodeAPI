@@ -42,15 +42,13 @@ app.get('/', (req,res) => {
 });
 
 
-app.get('/register/page', (req,res) =>  {
+app.get('/register-page', (req,res) =>  {
   res.render('register')
 });
 
 
 app.get('/login', async (req,res) => {
   try {
-    // const user = req.params.user;
-    // const pass = req.params.pass;
 
     const {idUsuario,contraseña} = req.body;
 
@@ -79,7 +77,7 @@ app.get('/login', async (req,res) => {
   }
 });
 
-app.get('/admin/login', (req, res) => {
+app.get('/admin-login', (req, res) => {
     res.render('admin_login')
 })
 
@@ -115,7 +113,7 @@ app.post('/register', (req, res) => {
   }
 });
 
-app.post('/register_score', (req,res) => {
+app.post('/register-score', (req,res) => {
   try {
     const {idUsuario, fechaHoraFinal, puntuacionAcumulada} = req.body;
 
@@ -142,7 +140,7 @@ app.post('/register_score', (req,res) => {
 })
 
 
-app.post('/register_game', (req,res) => {
+app.post('/register-game', (req,res) => {
   try {
     const {idUsuario,fechaHoraInicio} = req.body;
     const query = "insert into partida (idUsuario,fechaHoraInicio) values (@idUsuario,@fechaHoraInicio);";
