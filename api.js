@@ -143,7 +143,7 @@ app.post('/register-score', (req,res) => {
 app.post('/register-game', (req,res) => {
   try {
     const {idUsuario,fechaHoraInicio} = req.body;
-    const query = "insert into partida (idUsuario,fechaHoraInicio) values (@idUsuario,@fechaHoraInicio); select SCOPE_IDENTITY();";
+    const query = "insert into partida (idUsuario,fechaHoraInicio) values (@idUsuario,@fechaHoraInicio); select SCOPE_IDENTITY() as 'idPartida';";
 
     const request = new mssql.Request();
     request.input('idUsuario', mssql.VarChar, idUsuario);
