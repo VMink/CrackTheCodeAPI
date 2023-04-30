@@ -5,7 +5,7 @@ cursor = connection.cursor()
 
 cursor.execute('SELECT * FROM usuario;')
 row = cursor.fetchone()
-for column in row:
-    print(column[0], column[1], column[2])
+
+print(row)
 
 connection.close()
