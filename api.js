@@ -135,7 +135,7 @@ app.post('/register_score', (req,res) => {
       }
     })
 
-  } catch {
+  } catch (err) {
     res.status(500);
     res.json(err);
   }
@@ -160,7 +160,7 @@ app.post('/register_game', (req,res) => {
       }
     })
 
-  } catch {
+  } catch (err) {
     res.status(500);
     res.json(err);
   }
