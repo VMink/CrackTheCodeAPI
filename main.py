@@ -31,7 +31,7 @@ partidasminijuego = get_partidasminijuego()
 minijuegos = get_minijuegos()
 habilidades = get_habilidades()
 
-with open('/CSV/usuarios.csv','w') as file:
+with open('CSV/usuarios.csv','w') as file:
     file.write('idUsuario,Nombre,Apellido,Fecha de Nacimiento,contraseña,Correo,Teléfono,País,admin')
     for usuario in usuarios:
         fechaNacimiento = usuario[3].strftime('%Y-%m-%d %H:%M:%S')
