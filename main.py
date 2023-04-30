@@ -35,6 +35,6 @@ with open('CSV/usuarios.csv','w') as file:
     file.write('idUsuario,Nombre,Apellido,Fecha de Nacimiento,contraseña,Correo,Teléfono,País,admin\n')
     for usuario in usuarios:
         fechaNacimiento = usuario[3].strftime('%Y-%m-%d %H:%M:%S')
-        file.write(f'{usuario[0]},{usuario[1]},{usuario[2]},{fechaNacimiento},{usuario[3]},{usuario[5]},{usuario[6]},{usuario[7]},{usuario[8]}\n')
+        file.write(f'{usuario[0]},{usuario[1]},{usuario[2]},{fechaNacimiento},{usuario[4]},{usuario[5]},{usuario[6]},{usuario[7]},{usuario[8]}\n')
 
 connection.close()
