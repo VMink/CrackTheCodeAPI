@@ -45,6 +45,6 @@ with open('CSV/partidas.csv','w') as file:
             fechaFin = partida[3].strftime('%Y-%m-%d %H:%M:%S')
             file.write(f'{partida[0]},{partida[1]},{fechaInicio},{fechaFin},{partida[0]}\n')
         else:
-            file.write(f'{partida[0]},{partida[1]},{fechaInicio},{None},{partida[0]}\n')
+            file.write(f'{partida[0]},{partida[1]},{fechaInicio},NULL,{partida[0]}\n')
 
 connection.close()
