@@ -151,10 +151,10 @@ app.post('/register-game', (req,res) => {
 
     request.query(query, (err,result) => {
       if (err) {
-        res.contentType('text/plain');
-        res.send('Error al registrar tu partida');
+        res.status(500);
+        res.json(err);
       } else {
-        res.json(result);
+        res.json(result.recordset);
       }
     })
 
