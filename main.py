@@ -1,23 +1,11 @@
-import mysql.connector
+import pymssql
 
-# Conexión a la base de datos
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="sa",
-  password="7LhDkK$M",
-  database="juego",
-  port=1433
-)
+connection = pymssql.connect(server='localhost', user='sa', password='7LhDkK$M', database='juego')
+cursor = connection.cursor()
 
-# Crear un cursor
-mycursor = mydb.cursor()
+cursor.execute('SELECT * FROM usuario;')
+row = cursor.fetchone()
+for column in row:
+    print(column)
 
-# Ejecutar una consulta SQL
-mycursor.execute("SELECT * FROM usuario")
-
-# Obtener los resultados
-myresult = mycursor.fetchall()
-
-# Imprimir los resultados
-for x in myresult:
-  print(x)
+connection.close()
