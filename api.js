@@ -78,8 +78,39 @@ app.get('/login', async (req,res) => {
   }
 });
 
-app.get('/admin-login', (req, res) => {
+app.get('/login-admin-page', (req, res) => {
     res.render('admin_login')
+})
+
+app.get('/login-admin', (req,res) => {
+  try {
+
+    const {idUsuario,contraseña} = req.body;
+
+    const query = "select idUsuario,contraseña,admin from usuario where idUsuario = @user";
+    const request = new mssql.Request();
+    request.input('user', mssql.VarChar, idUsuario);
+
+    request.query(query, (err, result) => {
+      if (err) {
+        res.status(500);
+        res.json(err);
+      } else {
+        const user_data = result.recordset[0];
+
+        let login_response = {login_validation:'0', idUsuario:idUsuario};
+
+        if (user_data && user_data['idUsuario'] == idUsuario && user_data['contraseña'] == hashSHA3_256(contraseña) && user_data['admin'] == 1) {
+          login_response.login_validation = '1';
+        }
+        res.json(login_response);
+      }
+    });
+
+  } catch (err) {
+    res.status(500);
+    res.json(err);
+  }
 })
 
 app.post('/register', (req, res) => {
