@@ -1,4 +1,5 @@
 use juego;
+GO
 
 -- Usuarios admin
 
