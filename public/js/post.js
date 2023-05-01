@@ -28,6 +28,7 @@ function handleSubmit(event) {
             alert('Error: ' + result.resultado);
         } else {
             alert('Cuenta registrada!\n' + result.resultado);
+            window.location = 'https://play.unity.com/mg/other/webgl-builds-320925';
         }
     })
     .catch(error => {
