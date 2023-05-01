@@ -185,6 +185,9 @@ app.post('/register-game', (req,res) => {
     const {idUsuario,fechaHoraInicio} = req.body;
     const query = "insert into partida (idUsuario,fechaHoraInicio) values (@idUsuario,@fechaHoraInicio); select SCOPE_IDENTITY() as 'idPartida';";
 
+    console.log(idUsuario);
+    console.log(fechaHoraInicio);
+
     const request = new mssql.Request();
     request.input('idUsuario', mssql.VarChar, idUsuario);
     request.input('fechaHoraInicio', mssql.DateTime, fechaHoraInicio);
