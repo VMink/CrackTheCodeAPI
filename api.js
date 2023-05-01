@@ -140,6 +140,7 @@ app.post('/register', (req, res) => {
           res.json({error:'si', resultado:'Ocurrió un error al registrar su cuenta, inténtelo nuevamente'});
         }
       } else {
+        res.redirect('https://play.unity.com/mg/other/webgl-builds-320925')
         res.json({error:'no', resultado:`Se ha registrado correctamente el usuario ${idUsuario}`});
       }
     });
