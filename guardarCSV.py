@@ -55,13 +55,13 @@ with open('CSV/partidasminijuego.csv','w') as file:
         file.write(f'{partidaminijuego[0]},{partidaminijuego[1]},{partidaminijuego[2]},{partidaminijuego[3]},{partidaminijuego[4]}\n')
     print('Documento de partidasminijuego hecho')
 
-with open('CSV/minijuegos','w') as file:
+with open('CSV/minijuegos.csv','w') as file:
     file.write('idMinijuego,nombre,cantidadNiveles,puntajeMaximo\n')
     for minijuego in minijuegos:
         file.write(f'{minijuego[0]},{minijuego[1]},{minijuego[2]},{minijuego[3]}\n')
     print('Documento de minijuegos hecho')
 
-with open('CSV/habilidades','w') as file:
+with open('CSV/habilidades.csv','w') as file:
     file.write('idHabilida,idMinijuego,nombreHabilidad\n')
     for habilidad in habilidades:
         file.write(f'{habilidad[0]},{habilidad[1]},{habilidad[2]}\n')
