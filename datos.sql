@@ -24,11 +24,11 @@ GO
 -- frutas 5 - mate
 -- cajas 5 - pensamiento innovador
 
-insert into minijuego (idMinijuego,nombre,cantidadNiveles) values (1,'asteroides',3);
-insert into minijuego (idMinijuego,nombre,cantidadNiveles) values (2,'estacionarse',5);
-insert into minijuego (idMinijuego,nombre,cantidadNiveles) values (3,'laberinto',3);
-insert into minijuego (idMinijuego,nombre,cantidadNiveles) values (4,'frutas',5);
-insert into minijuego (idMinijuego,nombre,cantidadNiveles) values (5,'cajas',5);
+insert into minijuego (nombre,cantidadNiveles) values ('asteroides',3);
+insert into minijuego (nombre,cantidadNiveles) values ('estacionarse',5);
+insert into minijuego (nombre,cantidadNiveles) values ('laberinto',3);
+insert into minijuego (nombre,cantidadNiveles) values ('frutas',5);
+insert into minijuego (nombre,cantidadNiveles) values ('cajas',5);
 
 GO
 
