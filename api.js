@@ -55,6 +55,8 @@ app.get('/login/:idUsuario/:pass', async (req,res) => {
     const idUsuario = req.params.idUsuario;
     const contraseña = req.params.pass;
 
+    console.log(contraseña);
+
 
     const query = "select idUsuario,contraseña from usuario where idUsuario = @user";
     const request = new mssql.Request();
