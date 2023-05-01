@@ -44,9 +44,9 @@ with open('CSV/partidas.csv','w') as file:
         fechaInicio = partida[2].strftime('%Y-%m-%d %H:%M:%S')
         if not partida[3] is None:
             fechaFin = partida[3].strftime('%Y-%m-%d %H:%M:%S')
-            file.write(f'{partida[0]},{partida[1]},{fechaInicio},{fechaFin},{partida[0]}\n')
+            file.write(f'{partida[0]},{partida[1]},{fechaInicio},{fechaFin},{partida[4]}\n')
         else:
-            file.write(f'{partida[0]},{partida[1]},{fechaInicio},NULL,{partida[0]}\n')
+            file.write(f'{partida[0]},{partida[1]},{fechaInicio},NULL,{partida[4]}\n')
     print('Documento de partidas hecho')
 
 with open('CSV/partidasminijuego.csv','w') as file:
