@@ -177,7 +177,6 @@ app.post('/register-score', (req,res) => {
     res.json(err);
   }
 })
-var result = JsonUtility.FromJson<DatosLogin>(resultado.text);
 
 app.post('/register-game', (req,res) => {
   try {
