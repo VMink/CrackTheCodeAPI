@@ -16,3 +16,19 @@ insert into usuario (idUsuario,nombre,apellido,fechaNacimiento,contraseña,corre
 GO
 
 -- habilidades
+-- autoaprendizaje
+-- pensamiento matematico
+-- logica
+-- perseverancia
+-- pensamiento innovador
+
+
+
+--minijuegos
+-- asteroides 3 - perseverancia
+-- estacionarse 5 - autoaprendizaje
+-- laberinto 3 - logica
+-- frutas 5 - mate
+-- cajas 5 - pensamiento innovador
+
+insert into minijuego (nombre,cantidadNiveles) values ()

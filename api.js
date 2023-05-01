@@ -47,10 +47,14 @@ app.get('/register-page', (req,res) =>  {
 });
 
 
-app.get('/login', async (req,res) => {
+app.get('/login/:idUsuario/:pass', async (req,res) => {
   try {
 
-    const {idUsuario,contraseña} = req.body;
+    // const {idUsuario,contraseña} = req.body;
+
+    const idUsuario = req.params.idUsuario;
+    const contraseña = req.params.pass;
+
 
     const query = "select idUsuario,contraseña from usuario where idUsuario = @user";
     const request = new mssql.Request();
@@ -173,7 +177,7 @@ app.post('/register-score', (req,res) => {
     res.json(err);
   }
 })
-
+var result = JsonUtility.FromJson<DatosLogin>(resultado.text);
 
 app.post('/register-game', (req,res) => {
   try {
