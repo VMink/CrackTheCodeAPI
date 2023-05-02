@@ -92,7 +92,7 @@ app.get('/login-admin-page', (req, res) => {
     res.render('admin_login')
 })
 
-app.get('/admin/:idUsuario/:contraseña', (req,res) => {
+app.get('/admin/:idUsuario/:pass', (req,res) => {
   // try {
 
   //   // const {idUsuario,contraseña} = req.query;
@@ -112,7 +112,7 @@ app.get('/admin/:idUsuario/:contraseña', (req,res) => {
   //       res.status(500);
   //       res.json(err);
   //     } else {
-  //       const user_data = result.recordset[0];
+  //       const user_data = result.recordset[0];                                
 
   //       let login_response = {login_validation:'0', idUsuario:idUsuario};
 
