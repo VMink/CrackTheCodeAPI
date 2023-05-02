@@ -97,6 +97,9 @@ app.get('/login-admin', (req,res) => {
 
     const {idUsuario,contraseña} = req.body;
 
+    console.log(idUsuario)
+    console.log(contraseña)
+
     const query = "select idUsuario,contraseña,admin from usuario where idUsuario = @user";
     const request = new mssql.Request();
     request.input('user', mssql.VarChar, idUsuario);
