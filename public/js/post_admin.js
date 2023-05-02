@@ -1,15 +1,16 @@
 const form = document.getElementById('form');
 form.addEventListener('submit', handleSubmit);
-// form.addEventListener("submit", (e) => {
-//     e.preventDefault(); 
-//     const formData = new FormData(form); 
-//     const url = form.action; 
-//     const queryParams = new URLSearchParams(formData).toString(); 
-//     const fullUrl = `${url}?${queryParams}`; 
-//   });
+form.addEventListener("submit", (e) => {
+    e.preventDefault(); 
+    const formData = new FormData(form); 
+    const url = form.action; 
+    const queryParams = new URLSearchParams(formData).toString(); 
+    const fullUrl = `${url}?${queryParams}`; 
+    window.href = fullUrl;
+  });
   
 
-function handleSubmit(event) {
+/* function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const jsonData = Object.fromEntries(formData.entries());
@@ -24,3 +25,4 @@ function handleSubmit(event) {
         console.log('Error: ', error)
     })
 }
+ */
