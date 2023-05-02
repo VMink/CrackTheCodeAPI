@@ -120,7 +120,6 @@ app.get('/login-admin/:idUsuario/:contraseña', async (req,res) => {
           login_response.login_validation = '1';
           res.render('admin_panel')
         }
-        res.json(login_response);
       }
     });
 
