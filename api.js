@@ -92,7 +92,7 @@ app.get('/login-admin-page', (req, res) => {
     res.render('admin_login')
 })
 
-app.get('/admin/:idUsuario/:pass', (req,res) => {
+app.get('/login-admin/:idUsuario/:pass', (req,res) => {
   try {
     const idUsuario = req.params.idUsuario;
     const contraseña = req.params.pass;
