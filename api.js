@@ -57,9 +57,6 @@ app.get('/login/:idUsuario/:pass', async (req,res) => {
     const idUsuario = req.params.idUsuario;
     const contraseña = req.params.pass;
 
-    console.log(contraseña);
-
-
     const query = "select idUsuario,contraseña from usuario where idUsuario = @user";
     const request = new mssql.Request();
     request.input('user', mssql.VarChar, idUsuario);
@@ -157,6 +154,10 @@ app.post('/register-score', (req,res) => {
   try {
     const {idPartida, fechaHoraFinal, puntuacionAcumulada} = req.body;
 
+    console.log(idPartida)
+    console.log(fechaHoraFinal)
+    console.log(puntuacionAcumulada)
+
     const query = "UPDATE partida SET fechaHoraFinal = @fechaHoraFinal, puntuacionAcumulada = @puntuacionAcumulada WHERE idPartida = @idPartida;"
     
     const request = new mssql.Request();
@@ -186,9 +187,6 @@ app.post('/register-game', (req,res) => {
   try {
     const {idUsuario,fechaHoraInicio} = req.body;
     const query = "insert into partida (idUsuario,fechaHoraInicio) values (@idUsuario,@fechaHoraInicio); select SCOPE_IDENTITY() as 'idPartida';";
-
-    console.log(idUsuario);
-    console.log(fechaHoraInicio);
 
     const request = new mssql.Request();
     request.input('idUsuario', mssql.VarChar, idUsuario);
