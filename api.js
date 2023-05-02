@@ -114,8 +114,8 @@ app.get('/login-admin', (req,res) => {
 
         if (user_data && user_data['idUsuario'] == idUsuario && user_data['contraseña'] == hashSHA3_256(contraseña) && user_data['admin'] == 1) {
           login_response.login_validation = '1';
-          res.render('admin_panel')
           res.json({'error':'no'})
+          res.render('admin_panel')
         } else {
           res.json({'error':'si', 'resultado':'No es admin'})
         }
