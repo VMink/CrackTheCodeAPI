@@ -65,6 +65,7 @@ app.get('/login/:idUsuario/:pass', async (req,res) => {
       if (err) {
         res.status(500);
         res.json(err);
+        console.log(err);
       } else {
         const user_data = result.recordset[0];
 
@@ -80,6 +81,7 @@ app.get('/login/:idUsuario/:pass', async (req,res) => {
   } catch (err) {
     res.status(500);
     res.json(err);
+    console.log(err);
   }
 });
 
