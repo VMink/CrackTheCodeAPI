@@ -92,7 +92,7 @@ app.get('/login-admin-page', (req, res) => {
     res.render('admin_login')
 })
 
-app.get('/login-admin/:idUsuario/:contraseña', (req,res) => {
+app.get('/login-admin/:idUsuario/:contraseña', async (req,res) => {
   try {
 
     // const {idUsuario,contraseña} = req.query;
