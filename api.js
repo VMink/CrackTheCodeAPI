@@ -88,6 +88,10 @@ app.get('/login/:idUsuario/:pass', async (req,res) => {
   }
 });
 
+app.get('/tableau', (req, res) => {
+  res.render('admin_panel')
+})
+
 app.get('/login-admin-page', (req, res) => {
     res.render('admin_login')
 })
@@ -114,7 +118,9 @@ app.get('/login-admin', (req,res) => {
 
         if (user_data && user_data['idUsuario'] == idUsuario && user_data['contraseña'] == hashSHA3_256(contraseña) && user_data['admin'] == 1) {
           login_response.login_validation = '1';
-          res.render('admin_panel')
+          res.json({'error':'no'})
+        } else {
+          res.json({'error':'si', 'resultado':'No es admin'})
         }
       }
     });

@@ -20,6 +20,13 @@ function handleSubmit(event) {
             'Content-Type': 'application/json'
           },
         body: JSON.stringify(jsonData)
+    }).then(response => response.json())
+    .then(result => {
+        if (result.error == 'si') {
+            alert('Error: ' + result.resultado);
+        } else {
+            window.location = 'http://52.55.120.19:8080/tableau';
+        }
     })
     .catch(error => {
         console.log('Error: ', error)
