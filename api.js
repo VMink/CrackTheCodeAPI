@@ -93,41 +93,37 @@ app.get('/login-admin-page', (req, res) => {
 })
 
 app.get('/admin/:idUsuario/:pass', (req,res) => {
-  // try {
+  try {
+    const idUsuario = req.params.idUsuario;
+    const contraseña = req.params.pass;
 
-  //   // const {idUsuario,contraseña} = req.query;
+    console.log(idUsuario)
+    console.log(contraseña)
 
-  //   const idUsuario = req.params.idUsuario;
-  //   const contraseña = req.params.contraseña;
+    const query = "select idUsuario,contraseña,admin from usuario where idUsuario = @user";
+    const request = new mssql.Request();
+    request.input('user', mssql.VarChar, idUsuario);
 
-  //   console.log(idUsuario)
-  //   console.log(contraseña)
+    request.query(query, (err, result) => {
+      if (err) {
+        res.status(500);
+        res.json(err);
+      } else {
+        const user_data = result.recordset[0];                                
 
-  //   const query = "select idUsuario,contraseña,admin from usuario where idUsuario = @user";
-  //   const request = new mssql.Request();
-  //   request.input('user', mssql.VarChar, idUsuario);
+        let login_response = {login_validation:'0', idUsuario:idUsuario};
 
-  //   request.query(query, (err, result) => {
-  //     if (err) {
-  //       res.status(500);
-  //       res.json(err);
-  //     } else {
-  //       const user_data = result.recordset[0];                                
+        if (user_data && user_data['idUsuario'] == idUsuario && user_data['contraseña'] == hashSHA3_256(contraseña) && user_data['admin'] == 1) {
+          login_response.login_validation = '1';
+          res.render('admin_panel')
+        }
+      }
+    });
 
-  //       let login_response = {login_validation:'0', idUsuario:idUsuario};
-
-  //       if (user_data && user_data['idUsuario'] == idUsuario && user_data['contraseña'] == hashSHA3_256(contraseña) && user_data['admin'] == 1) {
-  //         login_response.login_validation = '1';
-  //         res.render('admin_panel')
-  //       }
-  //     }
-  //   });
-
-  // } catch (err) {
-  //   res.status(500);
-  //   res.json(err);
-  // }
-  res.send("Hola");
+  } catch (err) {
+    res.status(500);
+    res.json(err);
+  }
 })
 
 app.post('/register', (req, res) => {
