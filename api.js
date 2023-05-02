@@ -95,7 +95,7 @@ app.get('/login-admin-page', (req, res) => {
 app.get('/login-admin', (req,res) => {
   try {
 
-    const {idUsuario,contraseña} = req.body;
+    const {idUsuario,contraseña} = req.query;
 
     console.log(idUsuario)
     console.log(contraseña)
