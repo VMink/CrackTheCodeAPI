@@ -2,6 +2,8 @@ const express = require('express');
 const mssql = require('mssql');
 const { createHash } = require('crypto');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 
 const app = express();
 const port = 8080;
@@ -11,6 +13,7 @@ app.set('view engine', 'ejs')
 app.use(express.static(__dirname+'/public'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 function hashSHA3_256(data) {
   const hash = createHash('sha3-256');
@@ -109,6 +112,7 @@ app.get('/login-admin', (req,res) => {
 
         if (user_data && user_data['idUsuario'] == idUsuario && user_data['contraseña'] == hashSHA3_256(contraseña) && user_data['admin'] == 1) {
           login_response.login_validation = '1';
+          res.render('admin_panel')
         }
         res.json(login_response);
       }
