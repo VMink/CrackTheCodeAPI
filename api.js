@@ -1,6 +1,7 @@
 const express = require('express');
 const mssql = require('mssql');
 const { createHash } = require('crypto');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 8080;
@@ -8,6 +9,7 @@ const ipAddr = '52.55.120.19';
 
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname+'/public'))
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 function hashSHA3_256(data) {
