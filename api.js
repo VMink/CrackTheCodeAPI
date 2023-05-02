@@ -92,10 +92,9 @@ app.get('/login-admin-page', (req, res) => {
     res.render('admin_login')
 })
 
-app.get('/login-admin/:idUsuario/:pass', (req,res) => {
+app.get('/login-admin', (req,res) => {
   try {
-    const idUsuario = req.params.idUsuario;
-    const contraseña = req.params.pass;
+    const {idUsuario,contraseña} = req.query
 
     console.log(idUsuario)
     console.log(contraseña)
