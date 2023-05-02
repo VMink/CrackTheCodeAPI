@@ -92,41 +92,42 @@ app.get('/login-admin-page', (req, res) => {
     res.render('admin_login')
 })
 
-app.get('/login-admin/:idUsuario/:contraseña', async (req,res) => {
-  try {
+app.get('/admin/:idUsuario/:contraseña', (req,res) => {
+  // try {
 
-    // const {idUsuario,contraseña} = req.query;
+  //   // const {idUsuario,contraseña} = req.query;
 
-    const idUsuario = req.params.idUsuario;
-    const contraseña = req.params.contraseña;
+  //   const idUsuario = req.params.idUsuario;
+  //   const contraseña = req.params.contraseña;
 
-    console.log(idUsuario)
-    console.log(contraseña)
+  //   console.log(idUsuario)
+  //   console.log(contraseña)
 
-    const query = "select idUsuario,contraseña,admin from usuario where idUsuario = @user";
-    const request = new mssql.Request();
-    request.input('user', mssql.VarChar, idUsuario);
+  //   const query = "select idUsuario,contraseña,admin from usuario where idUsuario = @user";
+  //   const request = new mssql.Request();
+  //   request.input('user', mssql.VarChar, idUsuario);
 
-    request.query(query, (err, result) => {
-      if (err) {
-        res.status(500);
-        res.json(err);
-      } else {
-        const user_data = result.recordset[0];
+  //   request.query(query, (err, result) => {
+  //     if (err) {
+  //       res.status(500);
+  //       res.json(err);
+  //     } else {
+  //       const user_data = result.recordset[0];
 
-        let login_response = {login_validation:'0', idUsuario:idUsuario};
+  //       let login_response = {login_validation:'0', idUsuario:idUsuario};
 
-        if (user_data && user_data['idUsuario'] == idUsuario && user_data['contraseña'] == hashSHA3_256(contraseña) && user_data['admin'] == 1) {
-          login_response.login_validation = '1';
-          res.render('admin_panel')
-        }
-      }
-    });
+  //       if (user_data && user_data['idUsuario'] == idUsuario && user_data['contraseña'] == hashSHA3_256(contraseña) && user_data['admin'] == 1) {
+  //         login_response.login_validation = '1';
+  //         res.render('admin_panel')
+  //       }
+  //     }
+  //   });
 
-  } catch (err) {
-    res.status(500);
-    res.json(err);
-  }
+  // } catch (err) {
+  //   res.status(500);
+  //   res.json(err);
+  // }
+  res.send("Hola");
 })
 
 app.post('/register', (req, res) => {
