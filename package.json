@@ -8,7 +8,8 @@
     "express": "^4.18.2",
     "helmet": "^6.1.5",
     "mssql": "^9.1.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "zlib": "^1.0.5"
   },
   "name": "apireto",
   "version": "1.0.0",

@@ -4,6 +4,7 @@ const { createHash } = require('crypto');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const compression = require('compression');
+const zlib = require('zlib');
 
 
 const app = express();
