@@ -46,6 +46,10 @@ app.get('/', (req,res) => {
     res.render('index')
 });
 
+app.get('/juego', (req,res) => {
+  res.render('juego')
+});
+
 
 app.get('/register-page', (req,res) =>  {
   res.render('register')
