@@ -47,6 +47,7 @@ app.get('/', (req,res) => {
 });
 
 app.get('/juego', (req,res) => {
+  res.set('Content-Encoding', 'br');
   res.render('juego')
 });
 
