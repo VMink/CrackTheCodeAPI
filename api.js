@@ -16,7 +16,7 @@ app.use(express.static(__dirname+'/public'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-app.use(compression({ level: zlib.constants.BROTLI_MAX_QUALITY }));
+// app.use(compression({ level: zlib.constants.BROTLI_MAX_QUALITY }));
 
 function hashSHA3_256(data) {
   const hash = createHash('sha3-256');
