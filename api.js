@@ -231,6 +231,7 @@ app.post('/register-score-minigame',(req,res) => {
 
     request.query(query, (err,result) => {
       if (err) {
+        console.log(err);
         res.status(500);
         res.json(err);
       } else {
