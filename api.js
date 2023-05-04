@@ -217,6 +217,34 @@ app.post('/register-game', (req,res) => {
 });
 
 
+app.post('/register-score-minigame',(req,res) => {
+  try {
+    const {idUsuario,idPartida,idMinijuego,nivelAlcanzado,scoreHabilidadAlcanzado} = req.body;
+    const query = 'insert into [partida-minijuego] (idUsuario,idPartida,idMinijuego,nivelAlcanzado,scoreHabilidadAlcanzado) into (@idUsuario,@idPartida,@idMinijuego,@nivelAlcanzado,@scoreHabilidadAlcanzado);';
+    
+    request = new mssql.Request();
+    request.input('idUsuario',mssql.VarChar,idUsuario);
+    request.input('idPartida',mssql.VarChar,idPartida);
+    request.input('idMinijuego',mssql.VarChar,idMinijuego);
+    request.input('nivelAlcanzado',mssql.VarChar,nivelAlcanzado);
+    request.input('scoreHabilidadAlcanzado',mssql.VarChar,scoreHabilidadAlcanzado);
+
+    request.query(query, (err,result) => {
+      if (err) {
+        res.status(500);
+        res.json(err);
+      } else {
+        res.json(result.recordset[0]);
+      }
+    })
+
+  } catch (err) {
+    res.status(500);
+    res.json(err);
+  }
+})
+
+
 // Página 404
 app.use((req, res) => {
   res.type('text/plain').status(404).send('404 - Not Found');
