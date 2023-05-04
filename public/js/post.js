@@ -24,7 +24,6 @@ form.addEventListener('submit', event => {
         if (result.error == 'si') {
             alert('Error: ' + result.resultado);
         } else {
-            alert('Cuenta registrada!\n' + result.resultado);
             const url = form.action;
             window.href = url;
         }
