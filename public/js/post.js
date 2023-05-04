@@ -5,8 +5,8 @@ const phoneInput = window.intlTelInput(phoneInputField, {
 })
 
 const form = document.getElementById('form');
-// form.addEventListener('submit', handleSubmit);
-form.addEventListener('submit', event => {
+form.addEventListener('submit', event);
+form.addEventListener('submit', (event) => {
     event.preventDefault();
     const phoneNumber = phoneInput.getNumber();
     const formData = new FormData(event.target);
