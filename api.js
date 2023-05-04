@@ -3,9 +3,6 @@ const mssql = require('mssql');
 const { createHash } = require('crypto');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-// const compression = require('compression');
-// const zlib = require('zlib');
-
 
 const app = express();
 const port = 8080;
@@ -16,7 +13,6 @@ app.use(express.static(__dirname+'/public'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-// app.use(compression({ level: zlib.constants.BROTLI_MAX_QUALITY }));
 
 function hashSHA3_256(data) {
   const hash = createHash('sha3-256');
@@ -50,7 +46,6 @@ app.get('/', (req,res) => {
 });
 
 app.get('/juego', (req,res) => {
-  // res.set('Content-Encoding', 'br');
   res.render('juego')
 });
 
@@ -167,7 +162,7 @@ app.post('/register', (req, res) => {
   }
 });
 
-app.post('/register-score', (req,res) => {
+app.put('/register-score', (req,res) => {
   try {
     const {idPartida, fechaHoraFinal, puntuacionAcumulada} = req.body;
 
