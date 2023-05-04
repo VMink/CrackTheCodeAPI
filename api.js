@@ -222,7 +222,7 @@ app.post('/register-score-minigame',(req,res) => {
     const {idUsuario,idPartida,idMinijuego,nivelAlcanzado,scoreHabilidadAlcanzado} = req.body;
     const query = 'insert into [partida-minijuego] (idUsuario,idPartida,idMinijuego,nivelAlcanzado,scoreHabilidadAlcanzado) into (@idUsuario,@idPartida,@idMinijuego,@nivelAlcanzado,@scoreHabilidadAlcanzado);';
     
-    request = new mssql.Request();
+    const request = new mssql.Request();
     request.input('idUsuario',mssql.VarChar,idUsuario);
     request.input('idPartida',mssql.VarChar,idPartida);
     request.input('idMinijuego',mssql.VarChar,idMinijuego);
