@@ -5,7 +5,6 @@ const phoneInput = window.intlTelInput(phoneInputField, {
 })
 
 const form = document.getElementById('form');
-form.addEventListener('submit', event);
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     const phoneNumber = phoneInput.getNumber();
@@ -25,7 +24,7 @@ form.addEventListener('submit', (event) => {
             alert('Error: ' + result.resultado);
         } else {
             const url = form.action;
-            window.href = url;
+            window.location.href = url;
             console.log(url);
         }
     })
