@@ -220,7 +220,7 @@ app.post('/register-game', (req,res) => {
 app.post('/register-score-minigame',(req,res) => {
   try {
     const {idUsuario,idPartida,idMinijuego,nivelAlcanzado,scoreHabilidadAlcanzado} = req.body;
-    const query = 'insert into [partida-minijuego] (idUsuario,idPartida,idMinijuego,nivelAlcanzado,scoreHabilidadAlcanzado) into (@idUsuario,@idPartida,@idMinijuego,@nivelAlcanzado,@scoreHabilidadAlcanzado);';
+    const query = 'insert into [partida-minijuego] (idUsuario,idPartida,idMinijuego,nivelAlcanzado,scoreHabilidadAlcanzado) values (@idUsuario,@idPartida,@idMinijuego,@nivelAlcanzado,@scoreHabilidadAlcanzado);';
     
     const request = new mssql.Request();
     request.input('idUsuario',mssql.VarChar,idUsuario);
@@ -235,7 +235,6 @@ app.post('/register-score-minigame',(req,res) => {
         res.status(500);
         res.json(err);
       } else {
-        console.log(err);
         res.json(result.recordset[0]);
       }
     })
