@@ -26,6 +26,7 @@ form.addEventListener('submit', (event) => {
         } else {
             const url = form.action;
             window.href = url;
+            console.log(url);
         }
     })
     .catch(error => {
