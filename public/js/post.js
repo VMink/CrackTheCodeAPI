@@ -26,6 +26,8 @@ function handleSubmit(event) {
             alert('Error: ' + result.resultado);
         } else {
             alert('Cuenta registrada!\n' + result.resultado);
+            const url = form.action;
+            window.href = url;
         }
     })
     .catch(error => {

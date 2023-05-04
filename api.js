@@ -151,7 +151,6 @@ app.post('/register', (req, res) => {
         }
       } else {
         res.json({error:'no', resultado:`Se ha registrado correctamente el usuario ${idUsuario}`});
-        res.render('juego');
       }
     });
   } catch (err) {
