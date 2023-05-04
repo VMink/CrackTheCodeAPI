@@ -234,6 +234,7 @@ app.post('/register-score-minigame',(req,res) => {
         res.status(500);
         res.json(err);
       } else {
+        console.log(err);
         res.json(result.recordset[0]);
       }
     })
