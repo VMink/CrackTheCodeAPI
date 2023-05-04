@@ -57,9 +57,6 @@ app.get('/register-page', (req,res) =>  {
 
 app.get('/login/:idUsuario/:pass', async (req,res) => {
   try {
-
-    // const {idUsuario,contraseña} = req.body;
-
     const idUsuario = req.params.idUsuario;
     const contraseña = req.params.pass;
 
@@ -132,7 +129,7 @@ app.get('/login-admin', (req,res) => {
 
 app.post('/register', (req, res) => {
   try {
-    const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,clave_telefono_pais,pais} = req.body;
+    const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais} = req.body;
     const query = "insert into usuario (idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais) values (@idUsuario,@nombre,@apellido,@fechaNacimiento,@contraseña,@correo,@telefono,@pais)";
 
     const request = new mssql.Request();
@@ -154,6 +151,7 @@ app.post('/register', (req, res) => {
         }
       } else {
         res.json({error:'no', resultado:`Se ha registrado correctamente el usuario ${idUsuario}`});
+        res.render('juego');
       }
     });
   } catch (err) {
