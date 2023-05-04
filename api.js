@@ -206,7 +206,7 @@ app.post('/register-game', (req,res) => {
         res.status(500);
         res.json(err);
       } else {
-        res.json(result.recordset[0]);
+        res.json(result.recordset[0].idPartida);
       }
     })
 
