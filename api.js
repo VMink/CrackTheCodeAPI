@@ -1,25 +1,30 @@
+//Requires
 const express = require('express');
 const mssql = require('mssql');
 const { createHash } = require('crypto');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+//Global variables
 const app = express();
 const port = 8080;
 const ipAddr = '52.55.120.19';
 
-app.set('view engine', 'ejs')
-app.use(express.static(__dirname+'/public'))
+//Middlewares
+app.set('view engine', 'ejs') //Web view engine
+app.use(express.static(__dirname+'/public')) 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
+//Function that encrypts the password with sha-256
 function hashSHA3_256(data) {
   const hash = createHash('sha3-256');
   hash.update(data);
   return hash.digest('hex');
 }
 
+//Conection to the database configuration
 const dbConfig = {
   user: process.env.MSSQL_USER,
   password: process.env.MSSQL_PASSWORD,
@@ -29,6 +34,7 @@ const dbConfig = {
   options: { trustServerCertificate: true }
 };
 
+//Connection to the database
 async function connectDb() {
   try {
     await mssql.connect(dbConfig);
@@ -39,34 +45,34 @@ async function connectDb() {
   }
 }
 
-connectDb();
+connectDb(); //Call the connection
 
+//Endpoint to render the landingpage
 app.get('/', (req,res) => {
     res.render('index')
 });
 
+//Endpoint to render the Web GL game
 app.get('/juego', (req,res) => {
   res.render('juego')
 });
 
-
+//Endpoint to render the register form
 app.get('/register-page', (req,res) =>  {
   res.render('register')
 });
 
-
+//Endpoint to make the login
 app.get('/login/:idUsuario/:pass', async (req,res) => {
   try {
     const idUsuario = req.params.idUsuario;
     const contraseña = req.params.pass;
 
-    console.log(idUsuario);
-    console.log(contraseña);
-
-    const query = "select idUsuario,contraseña from usuario where idUsuario = @user";
+    const query = "select idUsuario,contraseña from usuario where idUsuario = @user"; //Query
     const request = new mssql.Request();
     request.input('user', mssql.VarChar, idUsuario);
 
+    //Execute the query to the database
     request.query(query, (err, result) => {
       if (err) {
         res.status(500);
@@ -91,10 +97,12 @@ app.get('/login/:idUsuario/:pass', async (req,res) => {
   }
 });
 
+//Endpoint to render the admin login form
 app.get('/login-admin-page', (req, res) => {
     res.render('admin_login')
 })
 
+//Endpoint to r
 app.get('/login-admin', (req,res) => {
   try {
     const {idUsuario,contraseña} = req.query
