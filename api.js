@@ -102,15 +102,12 @@ app.get('/login-admin-page', (req, res) => {
     res.render('admin_login')
 })
 
-//Endpoint to r
+//Endpoint to make the admin login 
 app.get('/login-admin', (req,res) => {
   try {
     const {idUsuario,contraseña} = req.query
 
-    console.log(idUsuario)
-    console.log(contraseña)
-
-    const query = "select idUsuario,contraseña,admin from usuario where idUsuario = @user";
+    const query = "select idUsuario,contraseña,admin from usuario where idUsuario = @user"; 
     const request = new mssql.Request();
     request.input('user', mssql.VarChar, idUsuario);
 
