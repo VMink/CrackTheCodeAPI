@@ -80,6 +80,11 @@ form .double .input {
     width: 205px;
 }
 
+.terminos-condiciones label a{
+    color: black;
+    font-weight: 800;
+}
+
 @media all and (max-width: 1050px) {
     main img {
         display: none;
@@ -93,6 +98,9 @@ form .double .input {
 }
 
 @media all and (max-width: 510px) {
+    #logo {
+        position: relative;
+    }
     .container {
         width: 350px;
         height: auto;

@@ -107,10 +107,11 @@ app.get('/login-admin', (req,res) => {
   try {
     const {idUsuario,contraseña} = req.query
 
-    const query = "select idUsuario,contraseña,admin from usuario where idUsuario = @user"; 
+    const query = "select idUsuario,contraseña,admin from usuario where idUsuario = @user"; //Query
     const request = new mssql.Request();
     request.input('user', mssql.VarChar, idUsuario);
 
+    //
     request.query(query, (err, result) => {
       if (err) {
         res.status(500);
