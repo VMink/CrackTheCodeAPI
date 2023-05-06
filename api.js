@@ -111,7 +111,7 @@ app.get('/login-admin', (req,res) => {
     const request = new mssql.Request();
     request.input('user', mssql.VarChar, idUsuario);
 
-    //
+    //Execute the query in the Database
     request.query(query, (err, result) => {
       if (err) {
         res.status(500);
@@ -136,6 +136,7 @@ app.get('/login-admin', (req,res) => {
   }
 })
 
+//Endpoint to register the user
 app.post('/register', (req, res) => {
   try {
     const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais} = req.body;
