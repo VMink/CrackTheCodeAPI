@@ -174,6 +174,9 @@ app.post('/register', (req, res) => {
 app.put('/register-score', (req,res) => {
   try {
     const {idPartida, fechaHoraFinal, puntuacionAcumulada} = req.body;
+    console.log(idPartida);
+    console.log(fechaHoraFinal);
+    console.log(puntuacionAcumulada);
 
     const query = "UPDATE partida SET fechaHoraFinal = @fechaHoraFinal, puntuacionAcumulada = @puntuacionAcumulada WHERE idPartida = @idPartida;" //Query
     
