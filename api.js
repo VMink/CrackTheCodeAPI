@@ -139,8 +139,8 @@ app.get('/login-admin', (req,res) => {
 //Endpoint to register the user
 app.post('/register', (req, res) => {
   try {
-    const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais} = req.body;
-    const query = "insert into usuario (idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais) values (@idUsuario,@nombre,@apellido,@fechaNacimiento,@contraseña,@correo,@telefono,@pais)";
+    const {idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais} = req.body; //Get the form data
+    const query = "insert into usuario (idUsuario,nombre,apellido,fechaNacimiento,contraseña,correo,telefono,pais) values (@idUsuario,@nombre,@apellido,@fechaNacimiento,@contraseña,@correo,@telefono,@pais)"; //Query
 
     const request = new mssql.Request();
     request.input('idUsuario', mssql.VarChar, idUsuario);
@@ -152,6 +152,7 @@ app.post('/register', (req, res) => {
     request.input('telefono', mssql.VarChar, telefono);
     request.input('pais', mssql.VarChar, pais);
 
+    //Execute the query on the database
     request.query(query, (err, result) => {
       if (err) {
         if (err.number == 2627) {
@@ -169,21 +170,19 @@ app.post('/register', (req, res) => {
   }
 });
 
+//Endpoint to register the final score of the player
 app.put('/register-score', (req,res) => {
   try {
     const {idPartida, fechaHoraFinal, puntuacionAcumulada} = req.body;
 
-    console.log(idPartida)
-    console.log(fechaHoraFinal)
-    console.log(puntuacionAcumulada)
-
-    const query = "UPDATE partida SET fechaHoraFinal = @fechaHoraFinal, puntuacionAcumulada = @puntuacionAcumulada WHERE idPartida = @idPartida;"
+    const query = "UPDATE partida SET fechaHoraFinal = @fechaHoraFinal, puntuacionAcumulada = @puntuacionAcumulada WHERE idPartida = @idPartida;" //Query
     
     const request = new mssql.Request();
     request.input('idPartida', mssql.Int, idPartida);
     request.input('fechaHoraFinal', mssql.DateTime, fechaHoraFinal);
     request.input('puntuacionAcumulada', mssql.Int, puntuacionAcumulada);
 
+    //Execute the query on the database
     request.query(query, (err,result) => {
       res.contentType('text/plain');
       if (err) {
@@ -202,17 +201,17 @@ app.put('/register-score', (req,res) => {
   }
 })
 
+//Endpoint to register a game of the player in the database
 app.post('/register-game', (req,res) => {
   try {
     const {idUsuario,fechaHoraInicio} = req.body;
-    console.log(idUsuario);
-    console.log(fechaHoraInicio);
-    const query = "insert into partida (idUsuario,fechaHoraInicio) values (@idUsuario,@fechaHoraInicio); select SCOPE_IDENTITY() as 'idPartida';";
+    const query = "insert into partida (idUsuario,fechaHoraInicio) values (@idUsuario,@fechaHoraInicio); select SCOPE_IDENTITY() as 'idPartida';"; //Query
 
     const request = new mssql.Request();
     request.input('idUsuario', mssql.VarChar, idUsuario);
     request.input('fechaHoraInicio', mssql.DateTime, fechaHoraInicio);
 
+    //Execute the query on the database
     request.query(query, (err,result) => {
       if (err) {
         res.status(500);
@@ -228,11 +227,11 @@ app.post('/register-game', (req,res) => {
   }
 });
 
-
+//Endpoint to register the score of each minigame in the game of the player
 app.post('/register-score-minigame',(req,res) => {
   try {
     const {idUsuario,idPartida,idMinijuego,nivelAlcanzado,scoreHabilidadAlcanzado} = req.body;
-    const query = 'insert into [partida-minijuego] (idUsuario,idPartida,idMinijuego,nivelAlcanzado,scoreHabilidadAlcanzado) values (@idUsuario,@idPartida,@idMinijuego,@nivelAlcanzado,@scoreHabilidadAlcanzado);';
+    const query = 'insert into [partida-minijuego] (idUsuario,idPartida,idMinijuego,nivelAlcanzado,scoreHabilidadAlcanzado) values (@idUsuario,@idPartida,@idMinijuego,@nivelAlcanzado,@scoreHabilidadAlcanzado);'; //Query
     
     const request = new mssql.Request();
     request.input('idUsuario',mssql.VarChar,idUsuario);
@@ -241,6 +240,7 @@ app.post('/register-score-minigame',(req,res) => {
     request.input('nivelAlcanzado',mssql.VarChar,nivelAlcanzado);
     request.input('scoreHabilidadAlcanzado',mssql.VarChar,scoreHabilidadAlcanzado);
 
+    //Execute the query on the database
     request.query(query, (err,result) => {
       if (err) {
         console.log(err);
@@ -264,6 +264,7 @@ app.use((req, res) => {
   res.type('text/plain').status(404).send('404 - Not Found');
 });
 
+//Mount the API
 app.listen(port,() => {
     console.log('Servidor corriendo en : http://' + ipAddr + ':' + port.toString());
 });
