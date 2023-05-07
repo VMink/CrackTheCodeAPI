@@ -171,7 +171,7 @@ app.post('/register', (req, res) => {
 });
 
 //Endpoint to register the final score of the player
-app.put('/register-score', (req,res) => {
+app.post('/register-score', (req,res) => {
   try {
     const {idPartida, fechaHoraFinal, puntuacionAcumulada} = req.body;
     console.log(idPartida);
