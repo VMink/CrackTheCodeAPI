@@ -220,7 +220,8 @@ app.post('/register-game', (req,res) => {
         res.status(500);
         res.json(err);
       } else {
-        res.json(result.recordset[0].idPartida);
+        res.contentType('text/plain');
+        res.send(result.recordset[0].idPartida);
       }
     })
 
